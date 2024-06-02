@@ -56,6 +56,13 @@
     const app = Vue.createApp({
         data() {
             return {
+              a:{
+                b:{
+                  xxx:5678,
+                  c:{
+                    d:123
+                }}
+              },
                 name:"",
                 sex:"",
                 aggre:"",
@@ -68,6 +75,20 @@
             }
         },
         watch: {
+
+            name(nval,oval){
+              console.log('nval', nval);
+              cosole.log('oval',oval);
+
+            },
+            a: {
+        handler(nval, oval) {
+          console.log('nval', nval);
+          console.log('oval', oval);
+        },
+        deep:false,
+        immediate:false
+      },
             hasName(newVal, oldVal) {
               console.log(newVal, oldVal);
               this.errorStyle.name = !newVal;
