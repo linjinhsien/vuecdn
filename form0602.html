@@ -1,166 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div id="app">
-        <div class="container">
-          <h2>你最喜歡的明星</h2>
-          <!-- <input type="checkbox"name="" value="a1"v-model="chk">5566
+  <div id="app">
+    <input type="text" v-model.lazy.trim="account">
+
+    <div class="container">
+      <h2>你最喜歡的明星</h2>
+      <!-- <input type="checkbox"name="" value="a1"v-model="chk">5566
           <input type="checkbox"name="" value="a2"v-model="chk">831
           <input type="checkbox"name="" value="a3"v-model="chk">183
           <input type="checkbox"name="" value="a4"v-model="chk">911 -->
-          
-          <template v-for="hobby in hobbyList" :key="hobby.id">
-            <label for="hobby.id" class="form-check-label">{{hobby.name}}</label>
-            <input id="hobby.id" type="checkbox" class="form-check-input" :value="hobby.id" v-model="chk">
-          </template>
-          {{chk}}
 
-          <h2>你只能選一個最喜歡的明星</h2>
-                  
-          <template v-for="hobby in hobbyList" :key="hobby.id">
-            <label for="'chk'+hobby.id" class="form-check-label">{{hobby.name}}</label>
-            <input id="'chk'+hobby.id" type="radio" class="form-check-input" :value="hobby.id" v-model="rdo">
-          </template>
-          
-        
-            <form class="row g-3 needs-validation" novalidate>
-                <div class="col-md-4">
-                  <label for="姓名" class="form-label">姓名</label>
-                  <input type="text" class="form-control" :class="{'is-invalid': errorStyle.name}" id="姓名"  v-model="name">
-                  <div class="invalid-feedback">
-                    不為空
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="性別" class="form-label">性別</label>
-                  <select class="form-select"  :class="{'is-invalid': errorStyle.sex}"id="性別" v-model="sex" >
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                    <option value="boy">男生</option>
-                    <option value="girl">女生</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    請選擇性別
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" :class="{'is-invalid': errorStyle.aggre}"type="checkbox" value="" id="invalidCheck"  v-model="aggre" required>
-                    <label class="form-check-label" for="invalidCheck">
-                      同意出售身體器官
-                    </label>
-                    <div class="invalid-feedback">
-                      你必須同意才可以進行
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button class="btn btn-primary" type="button" @click ="send">Submit form</button>
-                </div>
-              </form>
+      <template v-for="hobby in hobbyList" :key="hobby.id">
+        <label for="hobby.id" class="form-check-label">{{hobby.name}}</label>
+        <input id="hobby.id" type="checkbox" class="form-check-input" :value="hobby.id" v-model="chk">
+      </template>
+      {{chk}}
+
+      <h2>你只能選一個最喜歡的明星</h2>
+
+      <template v-for="hobby in hobbyList" :key="hobby.id">
+        <label for="'chk'+hobby.id" class="form-check-label">{{hobby.name}}</label>
+        <input id="'chk'+hobby.id" type="radio" class="form-check-input" :value="hobby.id" v-model="rdo">
+      </template>
+      {{rdo}}
+
+
+      <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+          <label for="姓名" class="form-label">姓名</label>
+          <input type="text" class="form-control" :class="{'is-invalid': errorStyle.name}" id="姓名" v-model="name">
+          <div class="invalid-feedback">
+            不為空
+          </div>
         </div>
+        <div class="col-md-3">
+          <label for="性別" class="form-label">性別</label>
+          <select class="form-select" :class="{'is-invalid': errorStyle.sex}" id="性別" v-model="sex">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+            <option value="boy">男生</option>
+            <option value="girl">女生</option>
+          </select>
+          <div class="invalid-feedback">
+            請選擇性別
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" :class="{'is-invalid': errorStyle.aggre}" type="checkbox" value=""
+              id="invalidCheck" v-model="aggre" required>
+            <label class="form-check-label" for="invalidCheck">
+              同意出售身體器官
+            </label>
+            <div class="invalid-feedback">
+              你必須同意才可以進行
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="button" @click="send">Submit form</button>
+        </div>
+      </form>
     </div>
+  </div>
 </body>
 <script>
-    const app = Vue.createApp({
-        data() {
-            return {
-              hobbyList: [
-                    { id: 1, name: "5566" },
-                    { id: 2, name: "183club" },
-                    { id: 3, name: "K-ONE" },
-                    { id: 4, name: "BAD" },
-                    { id: 5, name: "LISA" },
-                    { id: 6, name: "SS501" },
-                    { id: 7, name: "EXO" },
-                    { id: 8, name: "X-JAPAN" },
-                    { id: 9, name: "5堅情" },
-                    { id: 10, name: "FONEX" }
-                ],
-              a:{
-                b:{
-                  xxx:5678,
-                  c:{
-                    d:123
-                }}
-              },
-              rdo: [],
-              
-              chk: [],
-                name:"",
-                sex:"",
-                aggre:"",
-                errorStyle:{
-                  name:false,
-                  sex:false,
-                  aggre:false,
-                },
-                
-                
-                
+  const app = Vue.createApp({
+    data() {
+      return {
+        num: 1,
+        num1: 1,
+        hobbyList: [
+          { id: 1, name: "5566" },
+          { id: 2, name: "183club" },
+          { id: 3, name: "K-ONE" },
+          { id: 4, name: "BAD" },
+          { id: 5, name: "LISA" },
+          { id: 6, name: "SS501" },
+          { id: 7, name: "EXO" },
+          { id: 8, name: "X-JAPAN" },
+          { id: 9, name: "5堅情" },
+          { id: 10, name: "FONEX" }
+        ],
+        a: {
+          b: {
+            xxx: 5678,
+            c: {
+              d: 123
             }
+          }
         },
-        watch: {
+        rdo: [],
+        account: "",
 
-            name(nval,oval){
-              console.log('nval', nval);
-              console.log('oval',oval);
+        chk: [],
+        name: "",
+        sex: "",
+        aggre: "",
+        errorStyle: {
+          name: false,
+          sex: false,
+          aggre: false,
+        },
 
-            },
-            a: {
+
+
+      }
+    },
+    watch: {
+
+      account(nVal) {
+        this.checkAccountExist(nVal);
+      },
+      name(nval, oval) {
+        console.log('nval', nval);
+        console.log('oval', oval);
+      },
+      a: {
         handler(nval, oval) {
           console.log('nval', nval);
           console.log('oval', oval);
         },
-        deep:false,
-        immediate:false
+        deep: false,
+        immediate: false
       },
-            hasName(newVal, oldVal) {
-              console.log(newVal, oldVal);
-              this.errorStyle.name = !newVal;
-            },
-            hasSex(newVal, oldVal) {
-              this.temp = newVal ? 'is-valid' : 'is-invalid';
-            },
-            hasAgree(newVal, oldVal) {
-              this.errorStyle.aggre =!newVal ;
-            }
-          },
-        computed: {
-            hasName(){
-                return this.name !="";
+      hasName(newVal, oldVal) {
+        console.log(newVal, oldVal);
+        this.errorStyle.name = !newVal;
+      },
+      hasSex(newVal, oldVal) {
+        this.temp = newVal ? 'is-valid' : 'is-invalid';
+      },
+      hasAgree(newVal, oldVal) {
+        this.errorStyle.aggre = !newVal;
+      }
+    },
+    computed: {
+      hasName() {
+        return this.name != "";
 
-            },
-            hasSex(){
-                return this.sex !="";
-            },
-            hasAgree(){
-                return this.aggre;
-            },
+      },
+      hasSex() {
+        return this.sex != "";
+      },
+      hasAgree() {
+        return this.aggre;
+      },
 
-        },
-        methods: {
-
-            send(){
-                if (this.hasName && this.hasSex && this.hasAgree){
-                console.log(this.name,this.sex,this.aggre);}  
-                else  console.log("填寫資料不完全")
-                }
-               
-        },
-        mounted() {
+    },
+    methods: {
+      send() {
+        if (this.hasName && this.hasSex && this.hasAgree) {
+          console.log(this.name, this.sex, this.aggre);
         }
-    }).mount("#app");
+        else console.log("填寫資料不完全")
+      },
+      checkAccountExist(account) {
+        const existEmail = ["reds1210@gmail.com", "amy1010@gmail.com", "ken1122@gmail.com"]
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(account)) {
+          if (existEmail.includes(account)) {
+            console.log("email已經存在")
+          } else {
+            console.log("該帳號可以建立")
+          }
+        } else {
+          console.log("email格式錯誤")
+        }
+      },
+
+    },
+    mounted() {
+    }
+  }).mount("#app");
 </script>
+
 </html>
