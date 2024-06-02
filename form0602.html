@@ -14,8 +14,26 @@
 <body>
     <div id="app">
         <div class="container">
-          <input type="text" v-model="a.b.c.d">
-          <input type="text" v-model="a.b.xxx">
+          <h2>你最喜歡的明星</h2>
+          <!-- <input type="checkbox"name="" value="a1"v-model="chk">5566
+          <input type="checkbox"name="" value="a2"v-model="chk">831
+          <input type="checkbox"name="" value="a3"v-model="chk">183
+          <input type="checkbox"name="" value="a4"v-model="chk">911 -->
+          
+          <template v-for="hobby in hobbyList" :key="hobby.id">
+            <label for="hobby.id" class="form-check-label">{{hobby.name}}</label>
+            <input id="hobby.id" type="checkbox" class="form-check-input" :value="hobby.id" v-model="chk">
+          </template>
+          {{chk}}
+
+          <h2>你只能選一個最喜歡的明星</h2>
+                  
+          <template v-for="hobby in hobbyList" :key="hobby.id">
+            <label for="'chk'+hobby.id" class="form-check-label">{{hobby.name}}</label>
+            <input id="'chk'+hobby.id" type="radio" class="form-check-input" :value="hobby.id" v-model="rdo">
+          </template>
+          
+        
             <form class="row g-3 needs-validation" novalidate>
                 <div class="col-md-4">
                   <label for="姓名" class="form-label">姓名</label>
@@ -58,6 +76,18 @@
     const app = Vue.createApp({
         data() {
             return {
+              hobbyList: [
+                    { id: 1, name: "旅遊" },
+                    { id: 2, name: "攝影" },
+                    { id: 3, name: "閱讀" },
+                    { id: 4, name: "美食" },
+                    { id: 5, name: "運動" },
+                    { id: 6, name: "音樂" },
+                    { id: 7, name: "電影" },
+                    { id: 8, name: "藝術" },
+                    { id: 9, name: "寵物" },
+                    { id: 10, name: "手工藝" }
+                ],
               a:{
                 b:{
                   xxx:5678,
@@ -65,6 +95,9 @@
                     d:123
                 }}
               },
+              rdo: [],
+              
+              chk: [],
                 name:"",
                 sex:"",
                 aggre:"",
@@ -72,7 +105,9 @@
                   name:false,
                   sex:false,
                   aggre:false,
-                }
+                },
+                
+                
                 
             }
         },
@@ -80,7 +115,7 @@
 
             name(nval,oval){
               console.log('nval', nval);
-              cosole.log('oval',oval);
+              console.log('oval',oval);
 
             },
             a: {
