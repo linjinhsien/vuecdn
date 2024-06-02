@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-html="ht"></div>
+
+    <h1 v-show="false">hihi!!!</h1>
+    <div v-if="skin === 'dog'">
+      <h1>dog</h1>
+      <a href="">瀏覽</a>
+      <img src="https://picsum.photos/id/1025/600/400" alt="">
+    </div>
+    <div v-else-if="skin === 'cat'">
+      <img src="https://picsum.photos/id/1020/600/400" alt="">
+    </div>
+    <div v-else>
+      圖片施工中T.T
+    </div>
+
+    <div v-if="students.length == 0">
+      沒有任何資料
+    </div>
+    <div v-else>
+      <table>
+        <tr>
+          <th>序號</th>
+          <th>姓名</th>
+          <th>電話</th>
+          <th>地址</th>
+          <th>操作</th>
+        </tr>
+        <tr v-for="(item, idx) in students" :key="idx">
+          <td>{{ idx + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.address }}</td>
+          <td>
+            <button @click="wantToDelete(item)">刪除</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          skin: "s", // Initialize skin variable
+          ht: "<h1>aaa</h1>", // Corrected to use ht instead of aaa
+          students: [
+            { name: "John Doe", phone: "123-456-7890", address: "123 Main St, Springfield, IL" },
+            { name: "Jane Smith", phone: "234-567-8901", address: "456 Elm St, Springfield, IL" },
+            { name: "Michael Johnson", phone: "345-678-9012", address: "789 Oak St, Springfield, IL" },
+            { name: "Emily Davis", phone: "456-789-0123", address: "101 Maple St, Springfield, IL" },
+            { name: "David Brown", phone: "567-890-1234", address: "202 Pine St, Springfield, IL" },
+            { name: "Emma Wilson", phone: "678-901-2345", address: "303 Cedar St, Springfield, IL" },
+            { name: "James Anderson", phone: "789-012-3456", address: "404 Birch St, Springfield, IL" },
+            { name: "Olivia Martin", phone: "890-123-4567", address: "505 Walnut St, Springfield, IL" },
+            { name: "Robert Lee", phone: "901-234-5678", address: "606 Chestnut St, Springfield, IL" },
+            { name: "Sophia Garcia", phone: "012-345-6789", address: "707 Poplar St, Springfield, IL" }
+          ]
+        }
+      },
+      methods: {
+        wantToDelete(user) {
+          alert(`你要刪除的使用者是: ${user.name} 嗎?`);
+        }
+      }
+    }).mount("#app");
+
+    
+  
+  </script>
+</body>
+</html>

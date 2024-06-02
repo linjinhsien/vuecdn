@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{toUpper(text)}}
+    {{upperStr}}
+    {{toUpper(text)}}
+    {{upperStr}}
+    {{toUpper(text)}}
+    {{upperStr}}
+    
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+            text:[{id:1},{id:2},{id:3}]
+            
+        }
+      },
+      computed:{
+        upperStr()
+        {   console.log("compute")
+            return JSON.stringify (this.text);}
+
+      },
+
+      methods: {
+    toUpper(str) {
+        console.log("methods")
+        JSON.stringify (this.text);
+        }
+      }
+    }).mount("#app");
+
+    
+  
+  </script>
+</body>
+</html>
