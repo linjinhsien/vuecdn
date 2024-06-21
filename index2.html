@@ -62,7 +62,7 @@
                                     <td>{{ p.price }}</td>
                                     <td>{{ p.region }}</td>     
                                     <td><button @click="getDetail(p.product,$event)">詳細資料</button></td>
-                                    <a href="">詳細資料</a> 
+                                    <td><a href="" @click="getDetail2.evnt(p.product,$event)">詳細資料</a> <td>
 
                                 </tr>
                             </tbody>
@@ -116,6 +116,12 @@ beforeUnmount(){
         },
         methods:{
             getDetail(p,event){
+                console.log(p);
+                console.log(event);
+                 console.dir(event.target.parentElement.parentElement.children[0].innerText);
+            },
+            getDetail2(p,event){
+                event.preventDefault();
                 console.log(p);
                 console.log(event);
                  console.dir(event.target.parentElement.parentElement.children[0].innerText);
